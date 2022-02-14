@@ -2,12 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import "../App.css"
+const URL = process.env.REACT_APP_API_URL;
+const recipeKey = process.env.REACT_APP_API_KEY;
 
 const Recipe = () => {
     const [hints, setHints] = useState([])
     const[text, setText] = useState("beans");
     const[search,setSearch]=useState("");
-
     const onChange = (e) => {
         setText(e.target.value)
     }
@@ -18,10 +19,10 @@ const Recipe = () => {
     useEffect(() => { 
         axios
             .get(
-                `https://edamam-food-and-grocery-database.p.rapidapi.com/parser?ingr=${text}`,
+                `${URL}?ingr=${text}`,
             {
              headers: {
-                'x-rapidapi-key': "b7436eb940msh7eda97d567495aap1562ccjsndf86c1bddee6",
+                'x-rapidapi-key': `${recipeKey}`,
                 'x-rapidapi-host': 'edamam-food-and-grocery-database.p.rapidapi.com'
             },   
             })
@@ -29,7 +30,7 @@ const Recipe = () => {
             .catch((err) => console.log(err))
      },[search])
 
-     console.log(hints)
+    
     return (
         <div className="cook">
            <input  type="text" onChange={onChange} ></input>

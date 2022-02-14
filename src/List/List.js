@@ -1,6 +1,5 @@
 import React from 'react'
-import listStyles from './Utils';
-// import fetchGroceries from './api';
+import listStyles from './ListStyles';
 import { useState } from 'react';
 
 const List = () => {
